@@ -1,3 +1,12 @@
+import { ToGetProvider} from './context/ListProvider';
+import Header from './components/Header';
+import ShoppingList from './views/ShoppingList';
+
 export default function App() {
-  return <h1>Hello World</h1>;
+  return (
+    <ToGetProvider>
+      <Header/>
+      <ShoppingList/>
+    </ToGetProvider>
+  );
 }
