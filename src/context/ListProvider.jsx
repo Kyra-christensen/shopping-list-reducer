@@ -20,3 +20,41 @@ const toGetReducer = (state, action) => {
       throw new Error(`Action type ${action.type} is not supported.`);
   }
 };
+
+const ToGetContext = createContext();
+
+export const ToGetProvider = ({ children }) => {
+  const [togets, dispatch] = useReducer(toGetReducer, initialToGets);
+
+  const handleAddToGet = (text) => {
+    dispatch({ type: 'ADD_TOGET', payload: { text } });
+  };
+
+  const handleUpdateToGet = (toget) => {
+    dispatch({ type: 'UPDATE_TOGET', payload: { toget } });
+  };
+
+  const handleDeleteToGet = (id) => {
+    dispatch({ type: 'DELETE_TOGET', payload: { id } });
+  };
+
+  const handleDeleteAllToGets = () => {
+    dispatch({ type: 'DELETE_ALL_TOGETS', payload: { initialToGets } });
+  };
+
+  return (
+    <ToGetContext.Provider
+      value={{ togets, handleAddToGet, handleDeleteToGet, handleUpdateToGet, handleDeleteAllToGets}}>
+      {children}
+      </ToGetContext.Provider>
+  );
+};
+
+export const useToGets = () => {
+  const context = useContext(ToGetContext);
+
+  if (context === undefined) 
+    throw new Error('useToGets must be called from within a ToGetProvider');
+  
+  return context;
+}
