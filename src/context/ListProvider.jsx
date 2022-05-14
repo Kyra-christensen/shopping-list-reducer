@@ -16,6 +16,8 @@ const toGetReducer = (state, action) => {
       });
     case 'DELETE_TOGET':
       return state.filter((toget) => toget.id !== action.payload.id);
+    case 'DELETE_ALL_TOGETS':
+      return [];
     default:
       throw new Error(`Action type ${action.type} is not supported.`);
   }

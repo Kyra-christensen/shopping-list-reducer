@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export default function ToGet() {
+export default function ToGet({ toget, onUpdate, onDelete }) {
   const [isEditing, setIsEditing] = useState(false);
 
   let content;
