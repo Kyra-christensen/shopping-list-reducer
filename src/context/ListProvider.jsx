@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer } from 'react';
 
-const initialToGets = [{ id: Date.now(), text: 'apples', done: false }];
+const initialToGets = [];
 
 const toGetReducer = (state, action) => {
   switch (action.type) {
